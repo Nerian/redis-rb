@@ -6,7 +6,7 @@
 require "benchmark"
 require "redis"
 
-r = Redis.new
+r = Redis2.new
 n = (ARGV.shift || 20000).to_i
 
 elapsed = Benchmark.realtime do

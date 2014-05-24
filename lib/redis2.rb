@@ -1,7 +1,7 @@
 require "monitor"
 require "redis/errors"
 
-class Redis
+class Redis2
 
   def self.deprecate(message, trace = caller[0])
     $stderr.puts "\n#{message} (in #{trace})"
@@ -10,14 +10,14 @@ class Redis
   attr :client
 
   # @deprecated The preferred way to create a new client object is using `#new`.
-  #             This method does not actually establish a connection to Redis,
+  #             This method does not actually establish a connection to Redis2,
   #             in contrary to what you might expect.
   def self.connect(options = {})
     new(options)
   end
 
   def self.current
-    @current ||= Redis.new
+    @current ||= Redis2.new
   end
 
   def self.current=(redis)
@@ -240,7 +240,7 @@ class Redis
         begin
           client.call([:shutdown])
         rescue ConnectionError
-          # This means Redis has probably exited.
+          # This means Redis2 has probably exited.
           nil
         end
       end
@@ -2095,7 +2095,7 @@ class Redis
   #
   # @yield [multi] the commands that are called inside this block are cached
   #   and written to the server upon returning from it
-  # @yieldparam [Redis] multi `self`
+  # @yieldparam [Redis2] multi `self`
   #
   # @return [String, Array<...>]
   #   - when a block is not given, `OK`
@@ -2441,7 +2441,7 @@ class Redis
   end
 
   def inspect
-    "#<Redis client v#{Redis::VERSION} for #{id}>"
+    "#<Redis2 client v#{Redis2::VERSION} for #{id}>"
   end
 
   def dup

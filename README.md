@@ -6,11 +6,11 @@
 [inchpages-image]: http://inch-pages.github.io/github/redis/redis-rb.png
 [inchpages-link]: http://inch-pages.github.io/github/redis/redis-rb
 
-A Ruby client library for [Redis][redis-home].
+A Ruby client library for [Redis2][redis-home].
 
 [redis-home]: http://redis.io
 
-A Ruby client that tries to match Redis' API one-to-one, while still
+A Ruby client that tries to match Redis2' API one-to-one, while still
 providing an idiomatic interface. It features thread-safety, client-side
 sharding, pipelining, and an obsession for performance.
 
@@ -23,51 +23,51 @@ most important changes, as well as a full list of changes.
 
 ## Getting started
 
-As of version 2.0 this client only targets Redis version 2.0 and higher.
+As of version 2.0 this client only targets Redis2 version 2.0 and higher.
 You can use an older version of this client if you need to interface
-with a Redis instance older than 2.0, but this is no longer supported.
+with a Redis2 instance older than 2.0, but this is no longer supported.
 
-You can connect to Redis by instantiating the `Redis` class:
+You can connect to Redis2 by instantiating the `Redis2` class:
 
 ```ruby
 require "redis"
 
-redis = Redis.new
+redis = Redis2.new
 ```
 
-This assumes Redis was started with a default configuration, and is
+This assumes Redis2 was started with a default configuration, and is
 listening on `localhost`, port 6379. If you need to connect to a remote
 server or a different port, try:
 
 ```ruby
-redis = Redis.new(:host => "10.0.1.1", :port => 6380, :db => 15)
+redis = Redis2.new(:host => "10.0.1.1", :port => 6380, :db => 15)
 ```
 
 You can also specify connection options as an URL:
 
 ```ruby
-redis = Redis.new(:url => "redis://:p4ssw0rd@10.0.1.1:6380/15")
+redis = Redis2.new(:url => "redis://:p4ssw0rd@10.0.1.1:6380/15")
 ```
 
 By default, the client will try to read the `REDIS_URL` environment variable
 and use that as URL to connect to. The above statement is therefore equivalent
-to setting this environment variable and calling `Redis.new` without arguments.
+to setting this environment variable and calling `Redis2.new` without arguments.
 
-To connect to Redis listening on a Unix socket, try:
-
-```ruby
-redis = Redis.new(:path => "/tmp/redis.sock")
-```
-
-To connect to a password protected Redis instance, use:
+To connect to Redis2 listening on a Unix socket, try:
 
 ```ruby
-redis = Redis.new(:password => "mysecret")
+redis = Redis2.new(:path => "/tmp/redis.sock")
 ```
 
-The Redis class exports methods that are named identical to the commands
+To connect to a password protected Redis2 instance, use:
+
+```ruby
+redis = Redis2.new(:password => "mysecret")
+```
+
+The Redis2 class exports methods that are named identical to the commands
 they execute. The arguments these methods accept are often identical to
-the arguments specified on the [Redis website][redis-commands]. For
+the arguments specified on the [Redis2 website][redis-commands]. For
 instance, the `SET` and `GET` commands can be called like this:
 
 [redis-commands]: http://redis.io/commands
@@ -87,7 +87,7 @@ available on [rdoc.info][rdoc].
 
 ## Storing objects
 
-Redis only stores strings as values. If you want to store an object, you
+Redis2 only stores strings as values. If you want to store an object, you
 can use a serialization mechanism such as JSON:
 
 ```ruby
@@ -110,7 +110,7 @@ faster overall execution.
 
 The client can be instructed to pipeline commands by using the
 `#pipelined` method. After the block is executed, the client sends all
-commands to Redis and gathers their replies. These replies are returned
+commands to Redis2 and gathers their replies. These replies are returned
 by the `#pipelined` method.
 
 ```ruby
@@ -160,7 +160,7 @@ end
 
 ## Alternate drivers
 
-By default, redis-rb uses Ruby's socket library to talk with Redis.
+By default, redis-rb uses Ruby's socket library to talk with Redis2.
 To use an alternative connection driver it should be specified as option
 when instantiating the client object. These instructions are only valid
 for **redis-rb 3.0**. For instructions on how to use alternate drivers from
@@ -188,7 +188,7 @@ gem "hiredis", "~> 0.4.5"
 When instantiating the client object, specify hiredis:
 
 ```ruby
-redis = Redis.new(:driver => :hiredis)
+redis = Redis2.new(:driver => :hiredis)
 ```
 
 ### synchrony
@@ -196,7 +196,7 @@ redis = Redis.new(:driver => :hiredis)
 The synchrony driver adds support for [em-synchrony][em-synchrony].
 This makes redis-rb work with EventMachine's asynchronous I/O, while not
 changing the exposed API. The hiredis gem needs to be available as
-well, because the synchrony driver uses hiredis for parsing the Redis
+well, because the synchrony driver uses hiredis for parsing the Redis2
 protocol.
 
 [em-synchrony]: https://github.com/igrigorik/em-synchrony
@@ -212,7 +212,7 @@ gem "em-synchrony"
 When instantiating the client object, specify synchrony:
 
 ```ruby
-redis = Redis.new(:driver => :synchrony)
+redis = Redis2.new(:driver => :synchrony)
 ```
 
 ## Testing

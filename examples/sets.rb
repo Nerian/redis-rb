@@ -1,7 +1,7 @@
 require 'rubygems'
 require 'redis'
 
-r = Redis.new
+r = Redis2.new
 
 r.del 'foo-tags'
 r.del 'bar-tags'

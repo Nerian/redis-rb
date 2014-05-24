@@ -6,7 +6,7 @@ require 'redis'
 
 ITERATIONS = 10000
 
-@r = Redis.new
+@r = Redis2.new
 
 Benchmark.bmbm do |benchmark|
   benchmark.report("set") do

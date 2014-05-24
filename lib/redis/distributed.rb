@@ -1,6 +1,6 @@
 require "redis/hash_ring"
 
-class Redis
+class Redis2
   class Distributed
 
     class CannotDistribute < RuntimeError
@@ -9,7 +9,7 @@ class Redis
       end
 
       def message
-        "#{@command.to_s.upcase} cannot be used in Redis::Distributed because the keys involved need to be on the same server or because we cannot guarantee that the operation will be atomic."
+        "#{@command.to_s.upcase} cannot be used in Redis2::Distributed because the keys involved need to be on the same server or because we cannot guarantee that the operation will be atomic."
       end
     end
 
@@ -35,7 +35,7 @@ class Redis
     def add_node(options)
       options = { :url => options } if options.is_a?(String)
       options = @default_options.merge(options)
-      @ring.add_node Redis.new( options )
+      @ring.add_node Redis2.new( options )
     end
 
     # Change the selected database for the current connection.
@@ -810,7 +810,7 @@ class Redis
     end
 
     def inspect
-      "#<Redis client v#{Redis::VERSION} for #{nodes.map(&:id).join(', ')}>"
+      "#<Redis2 client v#{Redis2::VERSION} for #{nodes.map(&:id).join(', ')}>"
     end
 
     def dup

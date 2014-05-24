@@ -26,7 +26,7 @@ end_index = shift_from_argv.to_i
 sleep_msec = shift_from_argv.to_i
 sleep_duration = sleep_msec/1000.0
 
-redis = Redis.new
+redis = Redis2.new
 
 case operation
   when :initialize

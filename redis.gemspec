@@ -5,16 +5,16 @@ $:.unshift File.expand_path("../lib", __FILE__)
 require "redis/version"
 
 Gem::Specification.new do |s|
-  s.name = "redis"
+  s.name = "redis2"
 
-  s.version = Redis::VERSION
+  s.version = Redis2::VERSION
 
   s.homepage = "https://github.com/redis/redis-rb"
 
-  s.summary = "A Ruby client library for Redis"
+  s.summary = "A Ruby client library for Redis2"
 
   s.description = <<-EOS
-    A Ruby client that tries to match Redis' API one-to-one, while still
+    A Ruby client that tries to match Redis2' API one-to-one, while still
     providing an idiomatic interface. It features thread-safety,
     client-side sharding, pipelining, and an obsession for performance.
   EOS

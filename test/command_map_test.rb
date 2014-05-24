@@ -19,7 +19,7 @@ class TestCommandMap < Test::Unit::TestCase
   def test_override_non_existing_commands
     r.set("key", "value")
 
-    assert_raise Redis::CommandError do
+    assert_raise Redis2::CommandError do
       r.idontexist("key")
     end
 

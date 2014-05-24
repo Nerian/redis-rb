@@ -3,7 +3,7 @@ require "redis/errors"
 require "hiredis/connection"
 require "timeout"
 
-class Redis
+class Redis2
   module Connection
     class Hiredis
 
@@ -60,4 +60,4 @@ class Redis
   end
 end
 
-Redis::Connection.drivers << Redis::Connection::Hiredis
+Redis2::Connection.drivers << Redis2::Connection::Hiredis

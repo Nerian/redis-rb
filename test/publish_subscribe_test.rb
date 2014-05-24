@@ -37,7 +37,7 @@ class TestPublishSubscribe < Test::Unit::TestCase
     # Wait until the subscription is active before publishing
     Wire.pass while !@subscribed
 
-    Redis.new(OPTIONS).publish("foo", "s1")
+    Redis2.new(OPTIONS).publish("foo", "s1")
 
     wire.join
 
@@ -76,7 +76,7 @@ class TestPublishSubscribe < Test::Unit::TestCase
     # Wait until the subscription is active before publishing
     Wire.pass while !@subscribed
 
-    Redis.new(OPTIONS).publish("foo", "s1")
+    Redis2.new(OPTIONS).publish("foo", "s1")
 
     wire.join
 
@@ -108,7 +108,7 @@ class TestPublishSubscribe < Test::Unit::TestCase
     # Wait until the subscription is active before publishing
     Wire.pass while !@subscribed
 
-    Redis.new(OPTIONS).publish("foo", "s1")
+    Redis2.new(OPTIONS).publish("foo", "s1")
 
     wire.join
 
@@ -136,7 +136,7 @@ class TestPublishSubscribe < Test::Unit::TestCase
     # Wait until the subscription is active before publishing
     Wire.pass while !@subscribed
 
-    Redis.new(OPTIONS).publish("foo", "s1")
+    Redis2.new(OPTIONS).publish("foo", "s1")
 
     wire.join
 
@@ -163,7 +163,7 @@ class TestPublishSubscribe < Test::Unit::TestCase
   end
 
   def test_other_commands_within_a_subscribe
-    assert_raise Redis::CommandError do
+    assert_raise Redis2::CommandError do
       r.subscribe("foo") do |on|
         on.subscribe do |channel, total|
           r.set("bar", "s2")

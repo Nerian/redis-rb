@@ -54,7 +54,7 @@ class TestDistributedRemoteServerControlCommands < Test::Unit::TestCase
   def test_time
     target_version "2.5.4" do
       # Test that the difference between the time that Ruby reports and the time
-      # that Redis reports is minimal (prevents the test from being racy).
+      # that Redis2 reports is minimal (prevents the test from being racy).
       r.time.each do |rv|
         redis_usec = rv[0] * 1_000_000 + rv[1]
         ruby_usec = Integer(Time.now.to_f * 1_000_000)

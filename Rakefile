@@ -17,7 +17,7 @@ task :default => :run
 desc "Run tests and manage server start/stop"
 task :run => [:start, :test, :stop]
 
-desc "Start the Redis server"
+desc "Start the Redis2 server"
 task :start => BINARY do
   sh "#{BINARY} --version"
 
@@ -36,7 +36,7 @@ task :start => BINARY do
   end
 end
 
-desc "Stop the Redis server"
+desc "Stop the Redis2 server"
 task :stop do
   if File.exists?(REDIS_PID)
     Process.kill "INT", File.read(REDIS_PID).to_i
@@ -92,7 +92,7 @@ namespace :doc do
         end
 
         opts = [
-          "--title", "A Ruby client for Redis",
+          "--title", "A Ruby client for Redis2",
           "--output", "doc/#{tag}",
           "--no-cache",
           "--no-save",
@@ -378,7 +378,7 @@ namespace :commands do
 
     Rake::Task["test:ruby"].invoke
 
-    redis = Redis.new
+    redis = Redis2.new
 
     report = ["Command", "\033[0mDefined?\033[0m", "\033[0mTested?\033[0m"]
 

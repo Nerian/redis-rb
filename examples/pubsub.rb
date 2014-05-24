@@ -11,7 +11,7 @@ Finally force the example to exit sending the 'exit' message with:
 
 EOS
 
-redis = Redis.new
+redis = Redis2.new
 
 trap(:INT) { puts; exit }
 
@@ -30,7 +30,7 @@ begin
       puts "Unsubscribed from ##{channel} (#{subscriptions} subscriptions)"
     end
   end
-rescue Redis::BaseConnectionError => error
+rescue Redis2::BaseConnectionError => error
   puts "#{error}, retrying in 1s"
   sleep 1
   retry

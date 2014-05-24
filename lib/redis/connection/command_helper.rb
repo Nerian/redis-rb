@@ -1,4 +1,4 @@
-class Redis
+class Redis2
   module Connection
     module CommandHelper
 

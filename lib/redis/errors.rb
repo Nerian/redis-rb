@@ -1,4 +1,4 @@
-class Redis
+class Redis2
   # Base error for all redis-rb errors.
   class BaseError < RuntimeError
   end
@@ -9,7 +9,7 @@ class Redis
       super(<<-EOS.gsub(/(?:^|\n)\s*/, " "))
         Got '#{reply_type}' as initial reply byte.
         If you're in a forking environment, such as Unicorn, you need to
-        connect to Redis after forking.
+        connect to Redis2 after forking.
       EOS
     end
   end
@@ -22,11 +22,11 @@ class Redis
   class BaseConnectionError < BaseError
   end
 
-  # Raised when connection to a Redis server cannot be made.
+  # Raised when connection to a Redis2 server cannot be made.
   class CannotConnectError < BaseConnectionError
   end
 
-  # Raised when connection to a Redis server is lost.
+  # Raised when connection to a Redis2 server is lost.
   class ConnectionError < BaseConnectionError
   end
 

@@ -32,12 +32,12 @@ def init(redis)
     redis.select 15
     redis.flushdb
     redis
-  rescue Redis::CannotConnectError
+  rescue Redis2::CannotConnectError
     puts <<-EOS
 
-      Cannot connect to Redis.
+      Cannot connect to Redis2.
 
-      Make sure Redis is running on localhost, port #{PORT}.
+      Make sure Redis2 is running on localhost, port #{PORT}.
       This testing suite connects to the database 15.
 
       To install redis:
@@ -151,13 +151,13 @@ module Helper
     end
 
     def redis_mock(commands, options = {}, &blk)
-      RedisMock.start(commands, options) do |port|
+      Redis2Mock.start(commands, options) do |port|
         yield _new_client(options.merge(:port => port))
       end
     end
 
     def redis_mock_with_handler(handler, options = {}, &blk)
-      RedisMock.start_with_handler(handler, options) do |port|
+      Redis2Mock.start_with_handler(handler, options) do |port|
         yield _new_client(options.merge(:port => port))
       end
     end
@@ -168,7 +168,7 @@ module Helper
 
     def target_version(target)
       if version < target
-        skip("Requires Redis > #{target}") if respond_to?(:skip)
+        skip("Requires Redis2 > #{target}") if respond_to?(:skip)
       else
         yield
       end
@@ -190,7 +190,7 @@ module Helper
     end
 
     def _new_client(options = {})
-      Redis.new(_format_options(options).merge(:driver => ENV["conn"]))
+      Redis2.new(_format_options(options).merge(:driver => ENV["conn"]))
     end
   end
 
@@ -212,7 +212,7 @@ module Helper
     end
 
     def _new_client(options = {})
-      Redis::Distributed.new(NODES, _format_options(options).merge(:driver => ENV["conn"]))
+      Redis2::Distributed.new(NODES, _format_options(options).merge(:driver => ENV["conn"]))
     end
   end
 end

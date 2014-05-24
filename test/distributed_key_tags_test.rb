@@ -8,16 +8,16 @@ class TestDistributedKeyTags < Test::Unit::TestCase
   include Helper::Distributed
 
   def test_hashes_consistently
-    r1 = Redis::Distributed.new ["redis://127.0.0.1:#{PORT}/15", *NODES]
-    r2 = Redis::Distributed.new ["redis://127.0.0.1:#{PORT}/15", *NODES]
-    r3 = Redis::Distributed.new ["redis://127.0.0.1:#{PORT}/15", *NODES]
+    r1 = Redis2::Distributed.new ["redis://127.0.0.1:#{PORT}/15", *NODES]
+    r2 = Redis2::Distributed.new ["redis://127.0.0.1:#{PORT}/15", *NODES]
+    r3 = Redis2::Distributed.new ["redis://127.0.0.1:#{PORT}/15", *NODES]
 
     assert_equal r1.node_for("foo").id, r2.node_for("foo").id
     assert_equal r1.node_for("foo").id, r3.node_for("foo").id
   end
 
   def test_allows_clustering_of_keys
-    r = Redis::Distributed.new(NODES)
+    r = Redis2::Distributed.new(NODES)
     r.add_node("redis://127.0.0.1:#{PORT}/14")
     r.flushdb
 
@@ -39,7 +39,7 @@ class TestDistributedKeyTags < Test::Unit::TestCase
   end
 
   def test_allows_passing_a_custom_tag_extractor
-    r = Redis::Distributed.new(NODES, :tag => /^(.+?):/)
+    r = Redis2::Distributed.new(NODES, :tag => /^(.+?):/)
     r.add_node("redis://127.0.0.1:#{PORT}/14")
     r.flushdb
 

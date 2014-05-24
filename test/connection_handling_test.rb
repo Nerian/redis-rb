@@ -61,7 +61,7 @@ class TestConnectionHandling < Test::Unit::TestCase
       connections = redis.connections
 
       # SHUTDOWN replies with an error: test that it gets raised
-      assert_raise Redis::CommandError do
+      assert_raise Redis2::CommandError do
         redis.shutdown
       end
 
@@ -97,7 +97,7 @@ class TestConnectionHandling < Test::Unit::TestCase
       connections = redis.connections
 
       # SHUTDOWN replies with an error: test that it gets raised
-      assert_raise Redis::CommandError do
+      assert_raise Redis2::CommandError do
         redis.pipelined do
           redis.shutdown
         end
@@ -139,7 +139,7 @@ class TestConnectionHandling < Test::Unit::TestCase
       connections = redis.connections
 
       # SHUTDOWN replies with an error: test that it gets returned
-      # We should test for Redis::CommandError here, but hiredis doesn't yet do
+      # We should test for Redis2::CommandError here, but hiredis doesn't yet do
       # custom error classes.
       err = nil
 

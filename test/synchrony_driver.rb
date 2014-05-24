@@ -19,7 +19,7 @@ OPTIONS = {:port => PORT, :db => 15}
 #
 
 EM.synchrony do
-  r = Redis.new OPTIONS
+  r = Redis2.new OPTIONS
   r.flushdb
 
   r.rpush "foo", "s1"
@@ -59,10 +59,10 @@ EM.synchrony do
   assert_equal "PONG", r.ping
 
 
-  rpool = EM::Synchrony::ConnectionPool.new(size: 5) { Redis.new OPTIONS }
+  rpool = EM::Synchrony::ConnectionPool.new(size: 5) { Redis2.new OPTIONS }
 
   result = rpool.watch 'foo' do |rd|
-    assert_kind_of Redis, rd
+    assert_kind_of Redis2, rd
 
     rd.set "foo", "s1"
     rd.multi do |multi|
@@ -74,7 +74,7 @@ EM.synchrony do
   assert_equal "s1", rpool.get("foo")
 
   result = rpool.watch "foo" do |rd|
-    assert_kind_of Redis, rd
+    assert_kind_of Redis2, rd
 
     rd.multi do |multi|
       multi.set "foo", "s3"

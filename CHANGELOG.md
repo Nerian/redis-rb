@@ -4,7 +4,7 @@
 
 # 3.0.7
 
-* Added method `Redis#dup` to duplicate a Redis connection.
+* Added method `Redis2#dup` to duplicate a Redis2 connection.
 
 * IPv6 support.
 
@@ -16,9 +16,9 @@
 
 * Fix calling #select from a pipeline (#309).
 
-* Added method `Redis#connected?`.
+* Added method `Redis2#connected?`.
 
-* Added support for `MIGRATE` (Redis 2.6).
+* Added support for `MIGRATE` (Redis2 2.6).
 
 * Support extended SET command (#343, thanks to @benubois).
 
@@ -33,14 +33,14 @@
 # 3.0.3
 
 * Blocking list commands (`BLPOP`, `BRPOP`, `BRPOPLPUSH`) use a socket
-  timeout equal to the sum of the command's timeout and the Redis
+  timeout equal to the sum of the command's timeout and the Redis2
   client's timeout, instead of disabling socket timeout altogether.
 
 * Ruby 2.0 compatibility.
 
-* Added support for `DUMP` and `RESTORE` (Redis 2.6).
+* Added support for `DUMP` and `RESTORE` (Redis2 2.6).
 
-* Added support for `BITCOUNT` and `BITOP` (Redis 2.6).
+* Added support for `BITCOUNT` and `BITOP` (Redis2 2.6).
 
 * Call `#to_s` on value argument for `SET`, `SETEX`, `PSETEX`, `GETSET`,
   `SETNX`, and `SETRANGE`.
@@ -59,8 +59,8 @@
 
 * Passing a nil value in options hash no longer overwrites the default.
 
-* Allow string keys in options hash passed to `Redis.new` or
-  `Redis.connect`.
+* Allow string keys in options hash passed to `Redis2.new` or
+  `Redis2.connect`.
 
 * Fix uncaught error triggering unrelated error (synchrony driver).
 
@@ -97,7 +97,7 @@ upgrading from redis-rb 2.x. A full list of changes can be found below.
 
 ### Changes
 
-* Added support for scripting commands (Redis 2.6).
+* Added support for scripting commands (Redis2 2.6).
 
     Scripts can be executed using `#eval` and `#evalsha`. Both can
     commands can either take two arrays to specify `KEYS` and `ARGV`, or
@@ -127,17 +127,17 @@ upgrading from redis-rb 2.x. A full list of changes can be found below.
   Thanks, Ezra!
 
 * Added support for `PEXPIRE`, `PEXPIREAT`, `PTTL`, `PSETEX`,
-  `INCRYBYFLOAT`, `HINCRYBYFLOAT` and `TIME` (Redis 2.6).
+  `INCRYBYFLOAT`, `HINCRYBYFLOAT` and `TIME` (Redis2 2.6).
 
-* `Redis.current` is now thread unsafe, because the client itself is thread safe.
+* `Redis2.current` is now thread unsafe, because the client itself is thread safe.
 
     In the future you'll be able to do something like:
 
     ```ruby
-    Redis.current = Redis::Pool.connect
+    Redis2.current = Redis2::Pool.connect
     ```
 
-    This makes `Redis.current` actually usable in multi-threaded environments,
+    This makes `Redis2.current` actually usable in multi-threaded environments,
     while not affecting those running a single thread.
 
 * Change API for `BLPOP`, `BRPOP` and `BRPOPLPUSH`.
@@ -184,13 +184,13 @@ upgrading from redis-rb 2.x. A full list of changes can be found below.
     If by any chance you were rescuing low-level exceptions (`Errno::*`),
     you should now rescue as follows:
 
-        Errno::ECONNRESET    -> Redis::ConnectionError
-        Errno::EPIPE         -> Redis::ConnectionError
-        Errno::ECONNABORTED  -> Redis::ConnectionError
-        Errno::EBADF         -> Redis::ConnectionError
-        Errno::EINVAL        -> Redis::ConnectionError
-        Errno::EAGAIN        -> Redis::TimeoutError
-        Errno::ECONNREFUSED  -> Redis::CannotConnectError
+        Errno::ECONNRESET    -> Redis2::ConnectionError
+        Errno::EPIPE         -> Redis2::ConnectionError
+        Errno::ECONNABORTED  -> Redis2::ConnectionError
+        Errno::EBADF         -> Redis2::ConnectionError
+        Errno::EINVAL        -> Redis2::ConnectionError
+        Errno::EAGAIN        -> Redis2::TimeoutError
+        Errno::ECONNREFUSED  -> Redis2::CannotConnectError
 
 * Always raise exceptions originating from erroneous command invocation
   inside pipelines and MULTI/EXEC blocks.
@@ -212,7 +212,7 @@ upgrading from redis-rb 2.x. A full list of changes can be found below.
 
 * Ruby 1.8.6 is officially not supported.
 
-* Support `ZCOUNT` in `Redis::Distributed` (Michael Dungan).
+* Support `ZCOUNT` in `Redis2::Distributed` (Michael Dungan).
 
 * Pipelined commands now return the same replies as when called outside
   a pipeline.
@@ -230,11 +230,11 @@ upgrading from redis-rb 2.x. A full list of changes can be found below.
 
     It's just a small sanity check, cf. #126
 
-* Support variadic commands introduced in Redis 2.4.
+* Support variadic commands introduced in Redis2 2.4.
 
 # 2.2.2
 
-* Added method `Redis::Distributed#hsetnx`.
+* Added method `Redis2::Distributed#hsetnx`.
 
 # 2.2.1
 
@@ -244,14 +244,14 @@ upgrading from redis-rb 2.x. A full list of changes can be found below.
 
 * The `INFO` command can optionally take a subcommand. When the subcommand is
   `COMMANDSTATS`, the client will properly format the returned statistics per
-  command. Subcommands for `INFO` are available since Redis v2.3.0 (unstable).
+  command. Subcommands for `INFO` are available since Redis2 v2.3.0 (unstable).
 
 * Change `IO#syswrite` back to the buffered `IO#write` since some Rubies do
   short writes for large (1MB+) buffers and some don't (see issue #108).
 
 # 2.2.0
 
-* Added method `Redis#without_reconnect` that ensures the client will not try
+* Added method `Redis2#without_reconnect` that ensures the client will not try
   to reconnect when running the code inside the specified block.
 
 * Thread-safe by default. Thread safety can be explicitly disabled by passing

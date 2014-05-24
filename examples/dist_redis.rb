@@ -1,7 +1,7 @@
 require "redis"
 require "redis/distributed"
 
-r = Redis::Distributed.new %w[redis://localhost:6379 redis://localhost:6380 redis://localhost:6381 redis://localhost:6382]
+r = Redis2::Distributed.new %w[redis://localhost:6379 redis://localhost:6380 redis://localhost:6381 redis://localhost:6382]
 
 r.flushdb
 

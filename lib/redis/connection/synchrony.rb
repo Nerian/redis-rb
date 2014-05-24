@@ -4,9 +4,9 @@ require "redis/errors"
 require "em-synchrony"
 require "hiredis/reader"
 
-class Redis
+class Redis2
   module Connection
-    class RedisClient < EventMachine::Connection
+    class Redis2Client < EventMachine::Connection
       include EventMachine::Deferrable
 
       def post_init
@@ -63,13 +63,13 @@ class Redis
     end
 
     class Synchrony
-      include Redis::Connection::CommandHelper
+      include Redis2::Connection::CommandHelper
 
       def self.connect(config)
         if config[:scheme] == "unix"
-          conn = EventMachine.connect_unix_domain(config[:path], RedisClient)
+          conn = EventMachine.connect_unix_domain(config[:path], Redis2Client)
         else
-          conn = EventMachine.connect(config[:host], config[:port], RedisClient) do |c|
+          conn = EventMachine.connect(config[:host], config[:port], Redis2Client) do |c|
             c.pending_connect_timeout = [config[:timeout], 0.1].max
           end
         end
@@ -121,4 +121,4 @@ class Redis
   end
 end
 
-Redis::Connection.drivers << Redis::Connection::Synchrony
+Redis2::Connection.drivers << Redis2::Connection::Synchrony

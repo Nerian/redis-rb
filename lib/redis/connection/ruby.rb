@@ -3,7 +3,7 @@ require "redis/connection/command_helper"
 require "redis/errors"
 require "socket"
 
-class Redis
+class Redis2
   module Connection
     module SocketMixin
 
@@ -52,7 +52,7 @@ class Redis
           if IO.select([self], nil, nil, @timeout)
             retry
           else
-            raise Redis::TimeoutError
+            raise Redis2::TimeoutError
           end
         end
 
@@ -196,7 +196,7 @@ class Redis
     end
 
     class Ruby
-      include Redis::Connection::CommandHelper
+      include Redis2::Connection::CommandHelper
 
       MINUS    = "-".freeze
       PLUS     = "+".freeze
@@ -319,4 +319,4 @@ class Redis
   end
 end
 
-Redis::Connection.drivers << Redis::Connection::Ruby
+Redis2::Connection.drivers << Redis2::Connection::Ruby

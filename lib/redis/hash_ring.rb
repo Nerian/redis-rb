@@ -1,6 +1,6 @@
 require 'zlib'
 
-class Redis
+class Redis2
   class HashRing
 
     POINTS_PER_SERVER = 160 # this is the default in libmemcached

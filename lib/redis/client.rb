@@ -2,7 +2,7 @@ require "redis/errors"
 require "socket"
 require "cgi"
 
-class Redis
+class Redis2
   class Client
 
     DEFAULTS = {
@@ -274,13 +274,13 @@ class Redis
 
       begin
         commands.each do |name, *args|
-          @logger.debug("Redis >> #{name.to_s.upcase} #{args.map(&:to_s).join(" ")}")
+          @logger.debug("Redis2 >> #{name.to_s.upcase} #{args.map(&:to_s).join(" ")}")
         end
 
         t1 = Time.now
         yield
       ensure
-        @logger.debug("Redis >> %0.2fms" % ((Time.now - t1) * 1000)) if t1
+        @logger.debug("Redis2 >> %0.2fms" % ((Time.now - t1) * 1000)) if t1
       end
     end
 
@@ -288,9 +288,9 @@ class Redis
       @connection = @options[:driver].connect(@options.dup)
 
     rescue TimeoutError
-      raise CannotConnectError, "Timed out connecting to Redis on #{location}"
+      raise CannotConnectError, "Timed out connecting to Redis2 on #{location}"
     rescue Errno::ECONNREFUSED
-      raise CannotConnectError, "Error connecting to Redis on #{location} (ECONNREFUSED)"
+      raise CannotConnectError, "Error connecting to Redis2 on #{location} (ECONNREFUSED)"
     end
 
     def ensure_connected
@@ -303,7 +303,7 @@ class Redis
           if Process.pid != @pid
             raise InheritedError,
               "Tried to use a connection from a child process without reconnecting. " +
-              "You need to reconnect to Redis after forking."
+              "You need to reconnect to Redis2 after forking."
           end
         else
           connect

@@ -1,6 +1,6 @@
 require 'redis'
 
-r = Redis.new
+r = Redis2.new
 
 puts
 p 'incr'

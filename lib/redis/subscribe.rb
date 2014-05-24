@@ -1,4 +1,4 @@
-class Redis
+class Redis2
   class SubscribedClient
     def initialize(client)
       @client = client

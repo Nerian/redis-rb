@@ -31,19 +31,19 @@ def stress(redis)
   end
 end
 
-default = Redis.new
+default = Redis2.new
 
 logging_redises = [
-  Redis.new(:logger => log(:DEBUG)),
-  Redis.new(:logger => log(:INFO)),
+  Redis2.new(:logger => log(:DEBUG)),
+  Redis2.new(:logger => log(:INFO)),
 ]
 
 begin
   require "log4r"
 
   logging_redises += [
-    Redis.new(:logger => log(:DEBUG, Log4r)),
-    Redis.new(:logger => log(:INFO, Log4r)),
+    Redis2.new(:logger => log(:DEBUG, Log4r)),
+    Redis2.new(:logger => log(:INFO, Log4r)),
   ]
 rescue LoadError
   $stderr.puts "Log4r not installed. `gem install log4r` if you want to compare it against Ruby's Logger (spoiler: it's much faster)."
