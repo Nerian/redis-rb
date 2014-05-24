@@ -1,5 +1,5 @@
-require "redis/connection/registry"
-require "redis/errors"
+require "redis2/connection/registry"
+require "redis2/errors"
 require "hiredis/connection"
 require "timeout"
 

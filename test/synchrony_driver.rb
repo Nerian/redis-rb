@@ -4,7 +4,7 @@ require 'em-synchrony'
 require 'em-synchrony/connection_pool'
 
 require 'redis'
-require 'redis/connection/synchrony'
+require 'redis2/connection/synchrony'
 
 
 require File.expand_path("./helper", File.dirname(__FILE__))

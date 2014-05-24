@@ -1,4 +1,4 @@
-require "redis/connection/registry"
+require "redis2/connection/registry"
 
 # If a connection driver was required before this file, the array
 # Redis2::Connection.drivers will contain one or more classes. The last driver
@@ -6,4 +6,4 @@ require "redis/connection/registry"
 # the plain Ruby driver as our default. Another driver can be required at a
 # later point in time, causing it to be the last element of the #drivers array
 # and therefore be chosen by default.
-require "redis/connection/ruby" if Redis2::Connection.drivers.empty?
+require "redis2/connection/ruby" if Redis2::Connection.drivers.empty?

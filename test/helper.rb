@@ -15,8 +15,8 @@ $VERBOSE = true
 ENV["conn"] ||= "ruby"
 
 require "redis"
-require "redis/distributed"
-require "redis/connection/#{ENV["conn"]}"
+require "redis2/distributed"
+require "redis2/connection/#{ENV["conn"]}"
 
 require "support/redis_mock"
 require "support/connection/#{ENV["conn"]}"

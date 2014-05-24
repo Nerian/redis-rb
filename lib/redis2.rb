@@ -1,5 +1,7 @@
+$:.unshift File.expand_path("../../lib", __FILE__)
+
 require "monitor"
-require "redis/errors"
+require "redis2/errors"
 
 class Redis2
 
@@ -2524,8 +2526,8 @@ private
 
 end
 
-require "redis/version"
-require "redis/connection"
-require "redis/client"
-require "redis/pipeline"
-require "redis/subscribe"
+require "redis2/version"
+require "redis2/connection"
+require "redis2/client"
+require "redis2/pipeline"
+require "redis2/subscribe"

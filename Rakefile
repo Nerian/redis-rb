@@ -5,7 +5,7 @@ require 'rake/testtask'
 ENV["REDIS_BRANCH"] ||= "unstable"
 
 $:.unshift File.join(File.dirname(__FILE__), 'lib')
-require 'redis/version'
+require 'redis2/version'
 
 REDIS_DIR = File.expand_path(File.join("..", "test"), __FILE__)
 REDIS_CNF = File.join(REDIS_DIR, "test.conf")

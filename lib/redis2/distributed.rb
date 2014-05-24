@@ -1,4 +1,4 @@
-require "redis/hash_ring"
+require "redis2/hash_ring"
 
 class Redis2
   class Distributed

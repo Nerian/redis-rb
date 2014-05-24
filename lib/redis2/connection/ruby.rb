@@ -1,6 +1,6 @@
-require "redis/connection/registry"
-require "redis/connection/command_helper"
-require "redis/errors"
+require "redis2/connection/registry"
+require "redis2/connection/command_helper"
+require "redis2/errors"
 require "socket"
 
 class Redis2
