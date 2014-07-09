@@ -5,7 +5,7 @@ $:.unshift File.expand_path("../lib", __FILE__)
 require "redis2/version"
 
 Gem::Specification.new do |s|
-  s.name = "redis2"
+  s.name = "redis2-namespaced"
 
   s.version = Redis2::VERSION
 
